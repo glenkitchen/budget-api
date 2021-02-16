@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces.Persistence;
 using Application.Queries;
+using Application.Responses;
 using AutoMapper;
 using MediatR;
 using System.Collections.Generic;
@@ -9,16 +10,16 @@ using System.Threading.Tasks;
 namespace Application.Services.BudgetYears
 {
     // Queries
-    public class BudgetYearQuery : IdQuery, IRequest<BudgetYearDto>
+    public class BudgetYearQuery : IdQuery, IRequest<DataResponse<DataResponse<BudgetYearDto>>>
     {
     }
 
-    public class BudgetYearsQuery : Query, IRequest<List<BudgetYearListDto>>
+    public class BudgetYearsQuery : Query, IRequest<ListResponse<BudgetYearListDto>>
     {
     }
 
     // Handlers
-    public class BudgetYearQueryHandler : IRequestHandler<BudgetYearQuery, BudgetYearDto>
+    public class BudgetYearQueryHandler : IRequestHandler<BudgetYearQuery, DataResponse<DataResponse<BudgetYearDto>>>
     {
         private readonly IBudgetYearRepository _repository;
         private readonly IMapper _mapper;
@@ -29,13 +30,13 @@ namespace Application.Services.BudgetYears
             _mapper = mapper;
         }
 
-        public async Task<BudgetYearDto> Handle(BudgetYearQuery request, CancellationToken cancellationToken)
+        public async Task<DataResponse<DataResponse<BudgetYearDto>>> Handle(BudgetYearQuery request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<BudgetYearDto>(await _repository.GetByIdAsync(request.Id));
+            return _mapper.Map<DataResponse<DataResponse<BudgetYearDto>>>(await _repository.GetByIdAsync(request.Id));
         }
     }
 
-    public class BudgetYearsQueryHandler : IRequestHandler<BudgetYearsQuery, List<BudgetYearListDto>>
+    public class BudgetYearsQueryHandler : IRequestHandler<BudgetYearsQuery, ListResponse<BudgetYearListDto>>
     {
         private readonly IBudgetYearRepository _repository;
         private readonly IMapper _mapper;
@@ -46,9 +47,9 @@ namespace Application.Services.BudgetYears
             _mapper = mapper;
         }
 
-        public async Task<List<BudgetYearListDto>> Handle(BudgetYearsQuery request, CancellationToken cancellationToken)
+        public async Task<ListResponse<BudgetYearListDto>> Handle(BudgetYearsQuery request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<List<BudgetYearListDto>>(await _repository.GetAsync());
+            return _mapper.Map<ListResponse<BudgetYearListDto>>(await _repository.GetAsync());
         }
     }
 }
