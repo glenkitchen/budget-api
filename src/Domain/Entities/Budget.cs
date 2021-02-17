@@ -6,7 +6,7 @@ namespace Domain.Entities
     {
         public int BudgetTypeId { get; set; }
         public int BudgetVersionId { get; set; }
-        public int BudgetYearId { get; set; }
+        //public int BudgetYearId { get; set; }
         public int BudgetPeriodId { get; set; }
         public int GlAccountId { get; set; }
         public double Value { get; set; }
@@ -14,7 +14,7 @@ namespace Domain.Entities
         // Navigation Properties
         public BudgetType BudgetType { get; set; }
         public BudgetVersion BudgetVersion { get; set; }
-        public BudgetYear BudgetYear { get; set; }
+        //public BudgetYear BudgetYear { get; set; }
         public BudgetPeriod BudgetPeriod { get; set; }
         public GlAccount GlAccount { get; set; }
     }

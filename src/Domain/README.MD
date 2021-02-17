@@ -16,6 +16,6 @@ From EF Core 5.0, many-to-many relationships can also be discovered by [conventi
 
 However, if the many-to-many table contains additional data, then an explicit join entity must be created. 
   
-## TODO? 
+## TODO 
 
 Idempotent POST with alternate keys
