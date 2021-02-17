@@ -49,7 +49,7 @@ namespace Application.Services.BudgetPeriods
 
         public async Task<OperationResponse> Handle(CreateBudgetPeriodCommand command, CancellationToken cancellationToken)
         {
-            await _repository.AddAsync(_mapper.Map<BudgetPeriod>(command));
+            await _repository.AddAsync(_mapper.Map<BudgetPeriod>(command), cancellationToken);
 
             return new OperationResponse();
         }
@@ -68,9 +68,9 @@ namespace Application.Services.BudgetPeriods
 
         public async Task<OperationResponse> Handle(UpdateBudgetPeriodCommand command, CancellationToken cancellationToken)
         {
-            var period = await _repository.GetByIdAsync(command.Id);
+            var period = await _repository.GetByIdAsync(command.Id, cancellationToken);
 
-            await _repository.UpdateAsync(_mapper.Map<BudgetPeriod>(period));
+            await _repository.UpdateAsync(_mapper.Map<BudgetPeriod>(period), cancellationToken);
 
             return new OperationResponse();
         }
@@ -89,9 +89,9 @@ namespace Application.Services.BudgetPeriods
 
         public async Task<OperationResponse> Handle(DeleteBudgetPeriodCommand command, CancellationToken cancellationToken)
         {
-            var period = await _repository.GetByIdAsync(command.Id);
+            var period = await _repository.GetByIdAsync(command.Id, cancellationToken);
 
-            await _repository.DeleteAsync(period);
+            await _repository.DeleteAsync(period, cancellationToken);
 
             return new OperationResponse();
         }

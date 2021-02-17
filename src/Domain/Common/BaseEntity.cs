@@ -5,6 +5,8 @@ namespace Domain.Common
     public abstract class BaseEntity
     {
         public int Id { get; set; }
+
+        //Alternate key 
         //public Guid Guid { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
@@ -14,21 +16,20 @@ namespace Domain.Common
         public bool Deleted { get; set; }
     }
 
-    public abstract class BaseNameEntity : BaseEntity
+    public abstract class NameEntity : BaseEntity
     {
         public string Name { get; set; }
     }
 
-    public abstract class BaseCodeNameEntity : BaseEntity
+    public abstract class CodeNameEntity : BaseEntity
     {
         public string Code { get; set; }
         public string Name { get; set; }
     }
 
-    public abstract class BaseOption : BaseEntity
+    public abstract class OptionEntity : BaseEntity
     {
         public string Name { get; set; }
-        public int? Order { get; set; }
-        
+        public int? Order { get; set; }        
     }
 }

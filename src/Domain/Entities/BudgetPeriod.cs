@@ -3,7 +3,7 @@ using System;
 
 namespace Domain.Entities
 {
-    public class BudgetPeriod: BaseNameEntity
+    public class BudgetPeriod: NameEntity
     {
         public int BudgetYearId { get; set; }
         public int No { get; set; }

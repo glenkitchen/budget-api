@@ -32,7 +32,7 @@ namespace Application.Services.BudgetYears
 
         public async Task<DataResponse<DataResponse<BudgetYearDto>>> Handle(BudgetYearQuery request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<DataResponse<DataResponse<BudgetYearDto>>>(await _repository.GetByIdAsync(request.Id));
+            return _mapper.Map<DataResponse<DataResponse<BudgetYearDto>>>(await _repository.GetByIdAsync(request.Id, cancellationToken));
         }
     }
 
@@ -49,7 +49,7 @@ namespace Application.Services.BudgetYears
 
         public async Task<ListResponse<BudgetYearListDto>> Handle(BudgetYearsQuery request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<ListResponse<BudgetYearListDto>>(await _repository.GetAsync());
+            return _mapper.Map<ListResponse<BudgetYearListDto>>(await _repository.GetAsync(cancellationToken));
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Application.Services.BudgetYears
                 
             }
 
-            var year = await _repository.AddAsync(_mapper.Map<BudgetYear>(command));
+            var year = await _repository.AddAsync(_mapper.Map<BudgetYear>(command), cancellationToken);
 
             return new OperationResponse<BudgetYear> { 
                 OperationId = year.Id,
@@ -82,9 +82,9 @@ namespace Application.Services.BudgetYears
 
         public async Task<OperationResponse> Handle(UpdateBudgetYearCommand command, CancellationToken cancellationToken)
         {
-            var year = _repository.GetByIdAsync(command.Id);
+            var year = _repository.GetByIdAsync(command.Id, cancellationToken);
 
-            await _repository.UpdateAsync(_mapper.Map<BudgetYear>(year));
+            await _repository.UpdateAsync(_mapper.Map<BudgetYear>(year), cancellationToken);
 
             return new OperationResponse();
         }
@@ -103,9 +103,9 @@ namespace Application.Services.BudgetYears
 
         public async Task<OperationResponse> Handle(DeleteBudgetYearCommand command, CancellationToken cancellationToken)
         {
-            var year = await _repository.GetByIdAsync(command.Id);
+            var year = await _repository.GetByIdAsync(command.Id, cancellationToken);
 
-            await _repository.DeleteAsync(year);
+            await _repository.DeleteAsync(year, cancellationToken);
 
             return new OperationResponse();
         }

@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class GlAccount: BaseCodeNameEntity
+    public class GlAccount: CodeNameEntity
     {
         public int GlAccountTypeId { get; set; }
         public int? SalesRegionId { get; set; }
