@@ -5,17 +5,12 @@ namespace Domain.Entities
 {
     public class GlAccount: CodeNameEntity
     {
-        //public GlAccount()
-        //{
-        //    Budgets = new HashSet<Budget>();
-        //}
-
         public int GlAccountTypeId { get; set; }
         public int? SalesRegionId { get; set; }
 
         // Navigation Properties
         public GlAccountType GlAccountType { get; set; }
         public SalesRegion SalesRegion { get; set; }
-        //public ICollection<Budget> Budgets { get; set; }
+        public ICollection<Budget> Budgets { get; set; }
     }
 }

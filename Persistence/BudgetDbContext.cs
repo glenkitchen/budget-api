@@ -1,6 +1,6 @@
 ﻿using Domain.Common;
 using Domain.Entities;
-//using Domain.Entities.JoinEntities;
+using Domain.Entities.JoinEntities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -27,8 +27,7 @@ namespace Persistence
         // Query Cache (EntityFramework-Plus https://entityframework-plus.net/query-cache FromCacheAsync)       
         // Global Query Filters for Multi-Tenancy  
         // UserService
-        // Seed Data
-
+        
         public BudgetDbContext(DbContextOptions<BudgetDbContext> options) : base(options)
         {
             //AuditManager.DefaultConfiguration.AutoSavePreAction = (context, audit) =>
@@ -48,7 +47,6 @@ namespace Persistence
             {
                 builder.Entity(entityType.Name, b =>
                 {
-                    //b.HasAlternateKey("Guid");
                     b.Property("CreatedDate").HasDefaultValueSql("getutcdate()");
                     b.Property("CreatedBy").HasMaxLength(256);
                     b.Property("LastModifiedBy").HasMaxLength(256);
@@ -91,33 +89,27 @@ namespace Persistence
             //InvalidOperationException: Both 'Budget' and 'BaseEntity' are mapped to the table 'BaseEntity'.All the entity types in a hierarchy that don't have a discriminator must be mapped to different tables. 
             // See https://go.microsoft.com/fwlink/?linkid=2130430 for more information.            
             //builder.Entity<BaseEntity>().HasQueryFilter(e => !e.Disabled && !e.Deleted);
+
+            /***********************************
+            * Application Code
+            ***********************************/
             builder.Entity<Budget>().HasQueryFilter(e => !e.Disabled && !e.Deleted);
             builder.Entity<BudgetPeriod>().HasQueryFilter(e => !e.Disabled && !e.Deleted);
-            //builder.Entity<BudgetYear>().HasQueryFilter(e => !e.Disabled && !e.Deleted);
+            builder.Entity<BudgetYear>().HasQueryFilter(e => !e.Disabled && !e.Deleted);
             builder.Entity<GlAccount>().HasQueryFilter(e => !e.Disabled && !e.Deleted);
             builder.Entity<BudgetType>().HasQueryFilter(e => !e.Disabled && !e.Deleted);
             builder.Entity<BudgetVersion>().HasQueryFilter(e => !e.Disabled && !e.Deleted);
             builder.Entity<GlAccountType>().HasQueryFilter(e => !e.Disabled && !e.Deleted);
             builder.Entity<SalesRegion>().HasQueryFilter(e => !e.Disabled && !e.Deleted);
 
-            /***********************************
-            * Application Code
-            ***********************************/
+            // Configure many-to-many entities that have payload data
+            builder.Entity<BudgetVersion>()
+                   .HasMany(e => e.BudgetYears)
+                   .WithMany(e => e.BudgetVersions)
+                   .UsingEntity<BudgetVersionYear>(
+                        e => e.HasOne<BudgetYear>().WithMany(),
+                        e => e.HasOne<BudgetVersion>().WithMany());
 
-            // Configure many-to-many entities with payload data
-            //builder.Entity<BudgetVersion>()
-            //       .HasMany(e => e.BudgetYears)
-            //       .WithMany(e => e.BudgetVersions)
-            //       .UsingEntity<BudgetVersionYear>(
-            //            e => e.HasOne<BudgetYear>().WithMany(),
-            //            e => e.HasOne<BudgetVersion>().WithMany());
-
-            // Configure composite indexes
-            //builder.Entity<Budget>()
-            //       .HasIndex(e => new { e.BudgetVersionId, e.BudgetYearId, e.BudgetPeriodId, e.GlAccountId })
-            //       .IsUnique()
-            //       .IsClustered(false);
-                        
             base.OnModelCreating(builder);
         }
 
@@ -152,11 +144,11 @@ namespace Persistence
 
         public DbSet<Budget> Budgets { get; set; }
         public DbSet<BudgetPeriod> BudgetPeriods { get; set; }
-        //public DbSet<BudgetYear> BudgetYears { get; set; }
+        public DbSet<BudgetYear> BudgetYears { get; set; }
         public DbSet<GlAccount> GlAccounts { get; set; }
 
         // Join Entities
-        //public DbSet<BudgetVersionYear> BudgetVersionYears { get; set; }
+        public DbSet<BudgetVersionYear> BudgetVersionYears { get; set; }
 
         // Options 
         public DbSet<BudgetType> BudgetTypes { get; set; }
