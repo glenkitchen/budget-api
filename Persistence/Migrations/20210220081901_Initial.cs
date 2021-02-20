@@ -35,8 +35,8 @@ namespace Persistence.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Disabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDisabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false)
                 },
                 constraints: table =>
@@ -54,8 +54,8 @@ namespace Persistence.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Disabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDisabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Order = table.Column<int>(type: "int", nullable: true)
                 },
@@ -74,8 +74,8 @@ namespace Persistence.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Disabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDisabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Order = table.Column<int>(type: "int", nullable: true)
                 },
@@ -94,8 +94,8 @@ namespace Persistence.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Disabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDisabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Order = table.Column<int>(type: "int", nullable: true)
                 },
@@ -114,8 +114,8 @@ namespace Persistence.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Disabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDisabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Order = table.Column<int>(type: "int", nullable: true)
                 },
@@ -161,8 +161,8 @@ namespace Persistence.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Disabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDisabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false)
                 },
                 constraints: table =>
@@ -213,8 +213,8 @@ namespace Persistence.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Disabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDisabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     Code = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false)
                 },
@@ -251,8 +251,8 @@ namespace Persistence.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Disabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDisabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -262,31 +262,31 @@ namespace Persistence.Migrations
                         column: x => x.BudgetPeriodId,
                         principalTable: "BudgetPeriods",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Budgets_BudgetYears_BudgetYearId",
                         column: x => x.BudgetYearId,
                         principalTable: "BudgetYears",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Budgets_GlAccounts_GlAccountId",
                         column: x => x.GlAccountId,
                         principalTable: "GlAccounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Budgets_opt_BudgetType_BudgetTypeId",
                         column: x => x.BudgetTypeId,
                         principalTable: "opt_BudgetType",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Budgets_opt_BudgetVersion_BudgetVersionId",
                         column: x => x.BudgetVersionId,
                         principalTable: "opt_BudgetVersion",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -332,9 +332,9 @@ namespace Persistence.Migrations
                 column: "BudgetYearId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GlAccounts_Code",
+                name: "IX_GlAccounts_Code_IsDeleted",
                 table: "GlAccounts",
-                column: "Code",
+                columns: new[] { "Code", "IsDeleted" },
                 unique: true)
                 .Annotation("SqlServer:Clustered", false);
 
@@ -349,30 +349,30 @@ namespace Persistence.Migrations
                 column: "SalesRegionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_opt_BudgetType_Name",
+                name: "IX_opt_BudgetType_Name_IsDeleted",
                 table: "opt_BudgetType",
-                column: "Name",
+                columns: new[] { "Name", "IsDeleted" },
                 unique: true)
                 .Annotation("SqlServer:Clustered", false);
 
             migrationBuilder.CreateIndex(
-                name: "IX_opt_BudgetVersion_Name",
+                name: "IX_opt_BudgetVersion_Name_IsDeleted",
                 table: "opt_BudgetVersion",
-                column: "Name",
+                columns: new[] { "Name", "IsDeleted" },
                 unique: true)
                 .Annotation("SqlServer:Clustered", false);
 
             migrationBuilder.CreateIndex(
-                name: "IX_opt_GlAccountType_Name",
+                name: "IX_opt_GlAccountType_Name_IsDeleted",
                 table: "opt_GlAccountType",
-                column: "Name",
+                columns: new[] { "Name", "IsDeleted" },
                 unique: true)
                 .Annotation("SqlServer:Clustered", false);
 
             migrationBuilder.CreateIndex(
-                name: "IX_opt_SalesRegion_Name",
+                name: "IX_opt_SalesRegion_Name_IsDeleted",
                 table: "opt_SalesRegion",
-                column: "Name",
+                columns: new[] { "Name", "IsDeleted" },
                 unique: true)
                 .Annotation("SqlServer:Clustered", false);
         }

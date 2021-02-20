@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Persistence.Repositories;
+using System;
 
 namespace Persistence
 {
@@ -12,8 +14,8 @@ namespace Persistence
         {
             services.AddDbContext<BudgetDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
-                       .EnableSensitiveDataLogging()                       
-            );
+                       .LogTo(Console.WriteLine, LogLevel.Information) 
+                       .EnableSensitiveDataLogging());
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 

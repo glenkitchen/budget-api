@@ -9,8 +9,8 @@ namespace Domain.Common
         public DateTime CreatedDate { get; set; }
         public string LastModifiedBy { get; set; }
         public DateTime? LastModifiedDate { get; set; }
-        public bool Disabled { get; set; }
-        public bool Deleted { get; set; }
+        public bool IsDeleted { get; set; }
+        public bool IsDisabled { get; set; }
     }
 
     public abstract class NameEntity : BaseEntity

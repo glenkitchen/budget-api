@@ -14,7 +14,7 @@ namespace Application.Services.BudgetYears
     {
     }
 
-    public class BudgetYearsQuery : Query, IRequest<ListResponse<BudgetYearListDto>>
+    public class BudgetYearsQuery : BaseQuery, IRequest<ListResponse<BudgetYearListDto>>
     {
     }
 

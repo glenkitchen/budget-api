@@ -39,7 +39,16 @@ However, if the many-to-many table contains additional data (known as payload da
                           e => e.HasOne<BudgetVersion>().WithMany());   
 
 
+
   
 ## TODO 
+
+Referential Action 
+
+Immutable collection navigation property
+    
+    public ICollection<Post> Posts { get; } = new List<Post>();
+
+Mapping with private constructor 
 
 Idempotent POST with alternate keys
