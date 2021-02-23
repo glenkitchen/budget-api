@@ -49,7 +49,13 @@ namespace Application.Services.BudgetYears
 
         public async Task<ListResponse<BudgetYearListDto>> Handle(BudgetYearsQuery request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<ListResponse<BudgetYearListDto>>(await _repository.GetAsync(cancellationToken));
+            var list = await _repository.GetAsync(cancellationToken);
+            
+            return new ListResponse<BudgetYearListDto>
+            {
+                Count = list.Count,
+                Data = _mapper.Map<List<BudgetYearListDto>>(list)
+            };
         }
     }
 }

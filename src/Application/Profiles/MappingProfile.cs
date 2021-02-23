@@ -10,11 +10,13 @@ namespace Application.Profiles
         public MappingProfile()
         {
             CreateMap<BudgetYear, BudgetYearDto>().ReverseMap();
+            CreateMap<BudgetYear, BudgetYearListDto>().ReverseMap();
             CreateMap<BudgetYear, CreateBudgetYearCommand>().ReverseMap();
             CreateMap<BudgetYear, UpdateBudgetYearCommand>().ReverseMap();
             CreateMap<BudgetYear, DeleteBudgetYearCommand>().ReverseMap();
 
             CreateMap<BudgetPeriod, BudgetPeriodDto>().ReverseMap();
+            CreateMap<BudgetPeriod, BudgetPeriodListDto>().ReverseMap();
             CreateMap<BudgetPeriod, CreateBudgetPeriodCommand>().ReverseMap();
             CreateMap<BudgetPeriod, UpdateBudgetPeriodCommand>().ReverseMap();
             CreateMap<BudgetPeriod, DeleteBudgetPeriodCommand>().ReverseMap();

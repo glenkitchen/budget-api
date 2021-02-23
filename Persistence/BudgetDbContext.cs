@@ -18,18 +18,14 @@ namespace Persistence
         /***********************************
          * Clean Architecture Template Code
         ***********************************/
-        //Features 
-        // Configuration
-        // Logging (EnableSensitiveDataLogging with DbContextOptionsBuilder)
-        // Disable Change Tracking for Queries (In BaseRepository )
+        //Features                 
+        // Disable Change Tracking for Queries 
 
         //TODO       
-
         // Auditing (EntityFramework-Plus https://entityframework-plus.net/audit)
+        // Paging (expressions, dynamic linq)
         // Query Cache (EntityFramework-Plus https://entityframework-plus.net/query-cache FromCacheAsync)       
         // Global Query Filters for Multi-Tenancy  
-
-        // Dynamic paging https://entityframework-plus.net/ef-core-linq-dynamic
 
         //private readonly IUserService _user;
 
@@ -37,10 +33,10 @@ namespace Persistence
         public BudgetDbContext(DbContextOptions<BudgetDbContext> options) : base(options)
         {
             //_user = user;
-            //AuditManager.DefaultConfiguration.AutoSavePreAction = (context, audit) =>
-            //{
-            //    (context as BudgetDbContext).AuditEntries.AddRange(audit.Entries);
-            //};
+            AuditManager.DefaultConfiguration.AutoSavePreAction = (context, audit) =>
+            {
+                (context as BudgetDbContext).AuditEntries.AddRange(audit.Entries);
+            };
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -97,10 +93,6 @@ namespace Persistence
                 });
             }
 
-            //InvalidOperationException: Both 'Budget' and 'BaseEntity' are mapped to the table 'BaseEntity'.All the entity types in a hierarchy that don't have a discriminator must be mapped to different tables. 
-            // See https://go.microsoft.com/fwlink/?linkid=2130430 for more information.            
-            //builder.Entity<BaseEntity>().HasQueryFilter(e => !e.Disabled && !e.Deleted);
-
             /***********************************
             * Application Code
             ***********************************/
@@ -128,8 +120,7 @@ namespace Persistence
             {
                 switch (entry.State)
                 {
-                    // Note: Get current values for entity 
-                    //entry.CurrentValues
+                    // TODO Note: Get current values for entity, entry.CurrentValues
 
                     case EntityState.Added:
                         // Use Sql instead. (HasDefaultValueSql("getutcdate()"))                        

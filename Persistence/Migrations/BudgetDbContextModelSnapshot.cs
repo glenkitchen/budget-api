@@ -539,31 +539,26 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Entities.BudgetPeriod", "BudgetPeriod")
                         .WithMany("Budgets")
                         .HasForeignKey("BudgetPeriodId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.BudgetType", "BudgetType")
                         .WithMany("Budgets")
                         .HasForeignKey("BudgetTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.BudgetVersion", "BudgetVersion")
                         .WithMany("Budgets")
                         .HasForeignKey("BudgetVersionId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.BudgetYear", "BudgetYear")
                         .WithMany("Budgets")
                         .HasForeignKey("BudgetYearId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.GlAccount", "GlAccount")
                         .WithMany("Budgets")
                         .HasForeignKey("GlAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("BudgetPeriod");

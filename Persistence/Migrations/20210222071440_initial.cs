@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -262,31 +262,31 @@ namespace Persistence.Migrations
                         column: x => x.BudgetPeriodId,
                         principalTable: "BudgetPeriods",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Budgets_BudgetYears_BudgetYearId",
                         column: x => x.BudgetYearId,
                         principalTable: "BudgetYears",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Budgets_GlAccounts_GlAccountId",
                         column: x => x.GlAccountId,
                         principalTable: "GlAccounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Budgets_opt_BudgetType_BudgetTypeId",
                         column: x => x.BudgetTypeId,
                         principalTable: "opt_BudgetType",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Budgets_opt_BudgetVersion_BudgetVersionId",
                         column: x => x.BudgetVersionId,
                         principalTable: "opt_BudgetVersion",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

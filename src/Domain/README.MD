@@ -16,9 +16,9 @@ In the dependent entity create:
 
 If necessary, [manually configure]((https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#manual-configuration)) the foreign key with the principal entity. E.g. 
 
-    builder.HasOne(x => x.GlAccount)
-           .WithMany(s => s.Budgets)
-           .HasForeignKey(x => x.GlAccountId)
+    builder.HasOne(e => e.GlAccount)
+           .WithMany(e => e.Budgets)
+           .HasForeignKey(e => e.GlAccountId)
            .OnDelete(DeleteBehavior.ClientSetNull);
 
 
