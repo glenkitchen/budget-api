@@ -82,7 +82,7 @@ namespace Application.Services.BudgetYears
 
         public async Task<OperationResponse> Handle(UpdateBudgetYearCommand command, CancellationToken cancellationToken)
         {
-            var year = _repository.GetByIdAsync(command.Id, cancellationToken);
+            var year = _repository.GetEntityAsync(command.Id, cancellationToken);
 
             await _repository.UpdateAsync(_mapper.Map<BudgetYear>(year), cancellationToken);
 
@@ -103,9 +103,9 @@ namespace Application.Services.BudgetYears
 
         public async Task<OperationResponse> Handle(DeleteBudgetYearCommand command, CancellationToken cancellationToken)
         {
-            var year = await _repository.GetByIdAsync(command.Id, cancellationToken);
+            //var year = await _repository.GetEntityAsync(command.Id, cancellationToken);
 
-            await _repository.DeleteAsync(year, cancellationToken);
+            await _repository.DeleteAsync(command.Id, cancellationToken);
 
             return new OperationResponse();
         }

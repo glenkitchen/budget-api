@@ -10,19 +10,29 @@ namespace WebApi.Controllers
     public class BudgetPeriodController : BaseController
     {
         [HttpGet]
-        public async Task<ActionResult<ListResponse<BudgetPeriodListDto>>> Get([FromQuery] BudgetPeriodsQuery query) {
+        public async Task<ActionResult<ListResponse<BudgetPeriodListDto>>> Get([FromQuery] BudgetPeriodsQuery query)
+        {
             return Ok(await Mediator.Send(query));
-        }  
-        
+        }
+
         [HttpGet("{id}")]
-        public async Task<ActionResult<ListResponse<BudgetPeriodListDto>>> GetById([FromRoute] BudgetPeriodQuery query) {
-            return Ok(await Mediator.Send(query));
+        public async Task<ActionResult<ListResponse<BudgetPeriodListDto>>> GetById([FromRoute] BudgetPeriodQuery query)
+        {
+            //TODO Necessary, Or Call base controller, Or exception middleware
+            if (query == null || query.Id < 1)
+            {
+                return new NotFoundResult();
+            }
+
+            var result = await Mediator.Send(query);
+            return result == null ? NotFound() : Ok(result);
         }
 
         [HttpPost()]
         public async Task<ActionResult<OperationResponse>> Create([FromBody] CreateBudgetPeriodCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            //TODO Necessary
+            return command == null ? new BadRequestResult() : Ok(await Mediator.Send(command));
         }
 
         [HttpPut()]
@@ -30,7 +40,7 @@ namespace WebApi.Controllers
         {
             return Ok(await Mediator.Send(command));
         }
-        
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<OperationResponse>> Delete([FromRoute] DeleteBudgetPeriodCommand command)
         {

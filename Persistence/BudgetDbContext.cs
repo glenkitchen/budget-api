@@ -128,14 +128,14 @@ namespace Persistence
                         //entry.Entity.CreatedBy = _user.UserBy;                        
                         break;
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedDate = DateTime.UtcNow;
+                        entry.Entity.ModifiedDate = DateTime.UtcNow;
                         //entry.Entity.LastModifiedBy = _user.UserBy;
                         break;
                     // Soft delete. Intercept a delete and convert it to modified.
                     case EntityState.Deleted:
                         entry.State = EntityState.Modified;
                         entry.Entity.IsDeleted = true;
-                        entry.Entity.LastModifiedDate = DateTime.UtcNow;
+                        entry.Entity.ModifiedDate = DateTime.UtcNow;
                         //entry.Entity.LastModifiedBy = _user.UserBy;
                         break;
                 }
@@ -150,15 +150,20 @@ namespace Persistence
 
         private LambdaExpression CreateQueryFilterLambda(Type type)
         {
-            var parameter = Expression.Parameter(type, "e");
-
+            var parameter = Expression.Parameter(type);
             var falseConstant = Expression.Constant(false);
-            var propertyExpression = Expression.Property(parameter, "IsDeleted");
-            var equalExpression = Expression.Equal(propertyExpression, falseConstant);
 
-            var lambda = Expression.Lambda(equalExpression, parameter);
+            // left 
+            var deletedProperty = Expression.Property(parameter, "IsDeleted");
+            var deletedIsFalse = Expression.Equal(deletedProperty, falseConstant);
+            
+            // right
+            var disabledProperty = Expression.Property(parameter, "IsDisabled");
+            var disabledisFalse = Expression.Equal(disabledProperty, falseConstant);
+            
+            var body = Expression.And(deletedIsFalse, disabledisFalse);
 
-            return lambda;
+            return Expression.Lambda(body, parameter);
         }
 
         // Audit Entities (EF Plus)

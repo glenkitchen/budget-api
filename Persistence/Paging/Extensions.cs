@@ -7,12 +7,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using static Microsoft.EntityFrameworkCore.EF;
 
-// filters are separated by ;
-// filter parts are separated by |
-// TODO && ||
-// orders are separated by;
-// order parts are separated by |
-
 namespace Persistence.Paging
 {
     public static class PagingExtensions

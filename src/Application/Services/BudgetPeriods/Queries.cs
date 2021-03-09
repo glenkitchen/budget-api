@@ -32,7 +32,7 @@ namespace Application.Services.BudgetPeriods
 
         public async Task<DataResponse<DataResponse<DataResponse<BudgetPeriodDto>>>> Handle(BudgetPeriodQuery request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<DataResponse<DataResponse<DataResponse<BudgetPeriodDto>>>>(await _repository.GetByIdAsync(request.Id, cancellationToken));
+            return _mapper.Map<DataResponse<DataResponse<DataResponse<BudgetPeriodDto>>>>(await _repository.GetEntityAsync(request.Id, cancellationToken));
         }
     }
 
@@ -49,7 +49,7 @@ namespace Application.Services.BudgetPeriods
 
         public async Task<ListResponse<BudgetPeriodListDto>> Handle(BudgetPeriodsQuery request, CancellationToken cancellationToken)
         {
-            var list = await _repository.GetAsync(cancellationToken);
+            var list = await _repository.GetListAsync(cancellationToken);
 
             return new ListResponse<BudgetPeriodListDto>
             {
